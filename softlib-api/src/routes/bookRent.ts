@@ -32,3 +32,5 @@ router.post("/devolucao",[verifyJWT], async(req: Request, res: Response) => {
         throw error;
     } 
 });
+
+export default router;
