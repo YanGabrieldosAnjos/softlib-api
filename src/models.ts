@@ -6,10 +6,12 @@ import * as s from "./schemas";
 export const mongoOptions = config.MONGO_OPTIONS;
 
 const uri = config.DB_URI;
-const conn = createConnection(uri!, mongoOptions);
+
+export let conn = createConnection(uri!, mongoOptions);
 
 conn.on("error", console.log.bind(console, "Erro ao conectar"));
 conn.once("open", console.log.bind(console, "Conexão estabelecida"));
+
 
 set("useCreateIndex", true);
 
