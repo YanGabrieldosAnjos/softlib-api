@@ -28,12 +28,12 @@ router.post("/login", async(req: Request, res: Response) => {
 });
 
 
-router.post("/inserir", [verifyJWT], async(req: Request, res: Response) => {
+router.post("/inserir", async(req: Request, res: Response) => {
     const user = new UserController();
     
     try{
         const userInfo: INewUser = req.body;
-        res.status(201).send(await user.createUser(userInfo));
+        res.status(201).send({name: await user.createUser(userInfo)});
     }catch(error){
         throw error;
     }
