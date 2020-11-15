@@ -1,17 +1,11 @@
 import { Document, createConnection, set } from "mongoose";
-const { MONGO_USER, MONGO_PASSWORD, DB_NAME, DB_URI } = process.env;
-
+const { NODE_ENV } = process.env;
+import config from "./config";
 import * as s from "./schemas";
 
-export const mongoOptions = {
-  user: MONGO_USER,
-  pass: MONGO_PASSWORD,
-  useNewUrlParser: true,
-  dbName: DB_NAME,
-  authSource: "admin",
-};
+export const mongoOptions = config.MONGO_OPTIONS;
 
-const uri = DB_URI;
+const uri = config.DB_URI;
 const conn = createConnection(uri!, mongoOptions);
 
 conn.on("error", console.log.bind(console, "Erro ao conectar"));
