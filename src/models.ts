@@ -12,7 +12,6 @@ export const mongoOptions = {
 };
 
 const uri = DB_URI;
-console.log(uri);
 const conn = createConnection(uri!, mongoOptions);
 
 conn.on("error", console.log.bind(console, "Erro ao conectar"));
