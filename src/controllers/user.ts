@@ -16,8 +16,9 @@ export class UserController{
     async createUser(user : INewUser): Promise<string> {
         try{
             const cryptedPassword =  await bcrypt.hash(user.password, 10);
-            const { name } = await userModel.insertMany({...user, password: cryptedPassword});
-            return name;
+            const  [insertedUser]  = await userModel.insertMany([{...user, password: cryptedPassword}]);
+            
+            return insertedUser.name;
         }catch(error){
             throw new Error("Não foi possível cadastrar novo usuário.");
         }

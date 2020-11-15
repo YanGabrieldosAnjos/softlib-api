@@ -28,7 +28,7 @@ router.post("/login", async(req: Request, res: Response) => {
 });
 
 
-router.post("/insere", [verifyJWT], async(req: Request, res: Response) => {
+router.post("/inserir", [verifyJWT], async(req: Request, res: Response) => {
     const user = new UserController();
     
     try{
