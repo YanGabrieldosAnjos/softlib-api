@@ -19,7 +19,7 @@ router.post("/login", async (req: Request, res: Response) => {
       const token = jwt.sign({ payload }, process.env.SECRET!, {
         expiresIn: 500,
       });
-      return res.json({ auth: true, token });
+      return res.json({ auth: true, token, userId: userInfo._id });
     }
     return res.status(500).json({ message: "login inválido!" });
   } catch (error) {
