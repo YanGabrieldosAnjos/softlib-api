@@ -17,7 +17,7 @@ router.post("/login", async (req: Request, res: Response) => {
     const payload = userInfo._id;
     if (userInfo) {
       const token = jwt.sign({ payload }, process.env.SECRET!, {
-        expiresIn: 300,
+        expiresIn: 500,
       });
       return res.json({ auth: true, token });
     }
@@ -26,6 +26,7 @@ router.post("/login", async (req: Request, res: Response) => {
     throw error;
   }
 });
+
 
 router.post("/inserir", async (req: Request, res: Response) => {
   const user = new UserController();
