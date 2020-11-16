@@ -1,7 +1,6 @@
 import { UserRest } from "./mocks/user";
 
 import * as faker from "faker";
-import { UserController } from "../src/controllers/user";
 describe("user", () => {
     
     test("create", async ()=> {
