@@ -1,5 +1,5 @@
 import request from "supertest";
-import { IBookController } from "../../src/controllers/book";
+import { IBookController, IBookFilter } from "../../src/controllers/book";
 import * as app from "../../src/index";
 
 export class BookRest {
@@ -9,8 +9,24 @@ export class BookRest {
       .set("auth", token)
       .send(book);
       
-    console.log(res.status);
     const title: string = res.body.title;
     return title;
+  }
+  
+  async getBooks(token: string): Promise<IBookController[]>{
+    const res = await request(app.default)
+      .get("/api/livro/")
+      .set("auth", token)
+      
+    return res.body;    
+  }
+  
+  async filterBooks(token: string, filter: IBookFilter):Promise<IBookController[]>{
+    const res = await request(app.default)
+      .get("/api/livro/filtrar")
+      .set("auth", token)
+      .send(filter);
+    
+    return res.body; 
   }
 }
