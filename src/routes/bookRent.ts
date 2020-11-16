@@ -7,7 +7,7 @@ interface IBookRentRequest {
   userId: string;
   isbn: string;
 }
-router.post("/aluguel", [verifyJWT], async (req: Request, res: Response) => {
+router.post("/", [verifyJWT], async (req: Request, res: Response) => {
   const bookRent = new BookRentController();
 
   try {
