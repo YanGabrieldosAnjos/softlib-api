@@ -9,9 +9,11 @@
 # Instalação
 Instalar node e npm
 # Como rodar
-npm i (para baixar os modules)
-npm start (inicia o servidor)
+docker-compose up --build
 
+# Testes
+
+npm test (só alguns cases, e ainda está itermitente)
 # Endpoints
 
 POST /api/pipedrive/dealsOnBling: Seleciona oportudinades com status won e insere como pedido na bling, e salva no banco com valor total e data
