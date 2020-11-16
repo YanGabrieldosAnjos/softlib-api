@@ -46,8 +46,8 @@ describe("book", () => {
     }
     const books = await bookRest.getBooks(token.token);
     
-    expect(books.length).toBeLessThanOrEqual(5);
-    expect(books.length).toBeGreaterThanOrEqual(1);
+    expect(books.length).toEqual(bookRange);
+
   })
   
   test("filter", async () => {
