@@ -1,10 +1,4 @@
-import {
-  Document,
-  createConnection,
-  set,
-  connection,
-  Collection,
-} from "mongoose";
+
 import config from "../src/config";
 import { conn } from "../src/models";
 export const mongoOptions = config.MONGO_OPTIONS;
@@ -40,9 +34,9 @@ async function dropAllCollections() {
   }
 }
 
-afterEach(async () => {
-  await removeAllCollections();
-});
+// afterEach(async () => {
+//   await removeAllCollections();
+// });
 
 afterAll(async () => {
   await dropAllCollections();

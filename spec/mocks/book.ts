@@ -6,7 +6,7 @@ export class BookRest {
   async postBook(book: IBookController, token: string): Promise<string> {
     const res = await request(app.default)
       .post("/api/livro/inserir")
-      .set("Authorization", `bearer ${token}`)
+      .set("auth", token)
       .send(book);
       
     console.log(res.status);

@@ -12,7 +12,6 @@ describe("book", () => {
     await userRest.postUser(userInfo);
     token = await userRest.loginUser(userInfo.username, userInfo.password);
     
-    console.log(token);
   });
   test("create", async () => {
     const bookRest = new BookRest();
@@ -27,6 +26,6 @@ describe("book", () => {
     const title = await bookRest.postBook(bookInfo, token.token);
     console.log("test", title);
 
-    // expect(title).toBe(bookInfo.title);
+    expect(title).toBe(bookInfo.title);
   });
 });
