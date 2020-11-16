@@ -42,7 +42,7 @@ export class BookController {
         throw new Error("Livro não cadastrado no sistema. ");
       }
 
-      const rents = await bookRentModel.find({ book: bookToUpdate });
+      const rents = await bookRentModel.find({ book: bookToUpdate, isDeleted: false });
 
       if (rents.length > 0) {
         throw new Error("Esse livro já foi alugado.");
