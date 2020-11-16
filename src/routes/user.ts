@@ -27,7 +27,6 @@ router.post("/login", async (req: Request, res: Response) => {
   }
 });
 
-
 router.post("/inserir", async (req: Request, res: Response) => {
   const user = new UserController();
 

@@ -8,25 +8,28 @@ export class BookRest {
       .post("/api/livro/inserir")
       .set("auth", token)
       .send(book);
-      
+
     const title: string = res.body.title;
     return title;
   }
-  
-  async getBooks(token: string): Promise<IBookController[]>{
+
+  async getBooks(token: string): Promise<IBookController[]> {
     const res = await request(app.default)
       .get("/api/livro/")
-      .set("auth", token)
-      
-    return res.body;    
+      .set("auth", token);
+
+    return res.body;
   }
-  
-  async filterBooks(token: string, filter: IBookFilter):Promise<IBookController[]>{
+
+  async filterBooks(
+    token: string,
+    filter: IBookFilter
+  ): Promise<IBookController[]> {
     const res = await request(app.default)
       .get("/api/livro/filtrar")
       .set("auth", token)
       .send(filter);
-    
-    return res.body; 
+
+    return res.body;
   }
 }

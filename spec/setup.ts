@@ -1,4 +1,3 @@
-
 import { Collection } from "mongoose";
 import config from "../src/config";
 import { conn } from "../src/models";
@@ -6,12 +5,13 @@ export const mongoOptions = config.MONGO_OPTIONS;
 
 async function removeAllCollections() {
   const collections = Object.keys(conn.collections);
-  
-  await Promise.all(collections.map(async (collectionName) => {
-        const collection = conn.collections[collectionName];
-        await collection.deleteMany({});
-  }))
-  
+
+  await Promise.all(
+    collections.map(async (collectionName) => {
+      const collection = conn.collections[collectionName];
+      await collection.deleteMany({});
+    })
+  );
 }
 
 async function dropAllCollections() {

@@ -18,7 +18,7 @@ export interface IBookFilter {
 export class BookController {
   async createBook(book: IBookController): Promise<string> {
     try {
-      const [ bookInserted ] = await bookModel.insertMany([{ ...book }]);
+      const [bookInserted] = await bookModel.insertMany([{ ...book }]);
       return bookInserted.title;
     } catch (error) {
       console.log(error);
@@ -42,7 +42,10 @@ export class BookController {
         throw new Error("Livro não cadastrado no sistema. ");
       }
 
-      const rents = await bookRentModel.find({ book: bookToUpdate, isDeleted: false });
+      const rents = await bookRentModel.find({
+        book: bookToUpdate,
+        isDeleted: false,
+      });
 
       if (rents.length > 0) {
         throw new Error("Esse livro já foi alugado.");
@@ -54,7 +57,7 @@ export class BookController {
         throw new Error("Esse livro foi deletado.");
       }
 
-      await bookModel.updateOne({ _id: bookToUpdate._id }, book);      
+      await bookModel.updateOne({ _id: bookToUpdate._id }, book);
     } catch (error) {
       throw error;
     }
@@ -77,10 +80,7 @@ export class BookController {
         throw new Error("Livro indisponível para deleção no momento.");
       }
 
-      await bookModel.updateOne(
-        { _id: bookToDelete._id },
-        { isDeleted: true }
-      );
+      await bookModel.updateOne({ _id: bookToDelete._id }, { isDeleted: true });
     } catch (error) {
       throw error;
     }

@@ -9,11 +9,11 @@ const router = Router();
 
 router.post("/inserir", verifyJWT, async (req: Request, res: Response) => {
   const book = new BookController();
-  
+
   try {
     const bookInfo: IBookController = req.body;
-    
-    res.status(201).send({title: await book.createBook(bookInfo)});
+
+    res.status(201).send({ title: await book.createBook(bookInfo) });
   } catch (error) {
     throw error;
   }
@@ -42,8 +42,8 @@ router.put("/", [verifyJWT], async (req: Request, res: Response) => {
   const book = new BookController();
   try {
     const bookInfo: IBookController = req.body;
-    await book.updateBook(bookInfo.isbn, bookInfo)
-    res.status(200).send({status: "livro atualizado com sucesso!"});
+    await book.updateBook(bookInfo.isbn, bookInfo);
+    res.status(200).send({ status: "livro atualizado com sucesso!" });
   } catch (error) {
     throw error;
   }
@@ -53,8 +53,8 @@ router.delete("/", [verifyJWT], async (req: Request, res: Response) => {
   const book = new BookController();
   try {
     const bookInfo: IBookController = req.body;
-    await book.deleteBook(bookInfo.isbn)
-    res.status(200).send({status: "livro deletado com sucesso!"});
+    await book.deleteBook(bookInfo.isbn);
+    res.status(200).send({ status: "livro deletado com sucesso!" });
   } catch (error) {
     throw error;
   }
