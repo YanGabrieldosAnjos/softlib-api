@@ -7,9 +7,9 @@ export const mongoOptions = config.MONGO_OPTIONS;
 async function removeAllCollections() {
   const collections = Object.keys(conn.collections);
   
-  await Promise.all(collections.map((collectionName) => {
+  await Promise.all(collections.map(async (collectionName) => {
         const collection = conn.collections[collectionName];
-        collection.deleteMany({});
+        await collection.deleteMany({});
   }))
   
 }
@@ -37,9 +37,10 @@ async function dropAllCollections() {
   }
 }
 
- afterEach(async () => {
-   await removeAllCollections();
- });
+// this methods makes the result intermitent ()
+//  afterEach(async () => {
+//    await removeAllCollections();
+//  });
 
 afterAll(async () => {
   await dropAllCollections();

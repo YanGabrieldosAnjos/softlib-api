@@ -34,7 +34,7 @@ describe("book", () => {
     
     const bookRange = faker.random.number({max:5, min:1});
     
-    Array(bookRange).forEach(async i => {
+    for(let i = 0; i < bookRange; i++){
       const bookInfo: IBookController = {
         isbn: faker.random.uuid(),
         title: faker.random.word(),
@@ -42,10 +42,10 @@ describe("book", () => {
         quantity: faker.random.number({ max: 10, min: 1 }),
         synopsis: faker.random.word(),
       };
-      await bookRest.postBook(bookInfo, token.token);
-      
-    });
+        await bookRest.postBook(bookInfo, token.token);
+    }
     const books = await bookRest.getBooks(token.token);
+    
     expect(books.length).toBeLessThanOrEqual(5);
     expect(books.length).toBeGreaterThanOrEqual(1);
   })
@@ -55,7 +55,7 @@ describe("book", () => {
     
     const bookRange = faker.random.number({max:5, min:1});
     const insertedBooks: IBookController[] = [];
-    Array(bookRange).forEach(async i => {
+    for(let i = 0; i < bookRange; i++){
       const bookInfo: IBookController = {
         isbn: faker.random.uuid(),
         title: faker.random.word(),
@@ -63,13 +63,14 @@ describe("book", () => {
         quantity: faker.random.number({ max: 10, min: 1 }),
         synopsis: faker.random.word(),
       };
-      await bookRest.postBook(bookInfo, token.token);
-      insertedBooks.push(bookInfo);
-    });
+        await bookRest.postBook(bookInfo, token.token);
+        insertedBooks.push(bookInfo);
+    }
       
-      insertedBooks.map(async  book => {
-        const booksfiltered = await bookRest.filterBooks(token.token, {isbn: book.isbn, title: null, author: null});
-        expect(booksfiltered).toBeGreaterThanOrEqual(1);
-      });
+    for(const book of insertedBooks){
+      const booksfiltered = await bookRest.filterBooks(token.token, {isbn: book.isbn, title: null, author: null});
+      expect(booksfiltered.length).toBeGreaterThanOrEqual(1);
+    }
+      
   })
 });
