@@ -7,12 +7,12 @@ import {
 } from "../controllers/book";
 const router = Router();
 
-router.post("/insere", [verifyJWT], async (req: Request, res: Response) => {
+router.post("/inserir", [verifyJWT], async (req: Request, res: Response) => {
   const book = new BookController();
 
   try {
     const bookInfo: IBookController = req.body;
-
+    
     res.status(201).send(await book.createBook(bookInfo));
   } catch (error) {
     throw error;
