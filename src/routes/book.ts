@@ -38,7 +38,7 @@ router.get("/filtrar", [verifyJWT], async (req: Request, res: Response) => {
   }
 });
 
-router.put("/atualizar", [verifyJWT], async (req: Request, res: Response) => {
+router.put("/", [verifyJWT], async (req: Request, res: Response) => {
   const book = new BookController();
   try {
     const bookInfo: IBookController = req.body;
