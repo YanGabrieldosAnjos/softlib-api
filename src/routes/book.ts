@@ -7,13 +7,13 @@ import {
 } from "../controllers/book";
 const router = Router();
 
-router.post("/inserir", [verifyJWT], async (req: Request, res: Response) => {
+router.post("/inserir", verifyJWT, async (req: Request, res: Response) => {
   const book = new BookController();
-
+  
   try {
     const bookInfo: IBookController = req.body;
     
-    res.status(201).send(await book.createBook(bookInfo));
+    res.status(201).send({title: await book.createBook(bookInfo)});
   } catch (error) {
     throw error;
   }
@@ -42,17 +42,19 @@ router.put("/atualizar", [verifyJWT], async (req: Request, res: Response) => {
   const book = new BookController();
   try {
     const bookInfo: IBookController = req.body;
-    res.status(200).send(await book.updateBook(bookInfo.isbn, bookInfo));
+    await book.updateBook(bookInfo.isbn, bookInfo)
+    res.status(200).send({status: "livro atualizado com sucesso!"});
   } catch (error) {
     throw error;
   }
 });
 
-router.delete("/deletar", [verifyJWT], async (req: Request, res: Response) => {
+router.delete("/", [verifyJWT], async (req: Request, res: Response) => {
   const book = new BookController();
   try {
     const bookInfo: IBookController = req.body;
-    res.status(200).send(await book.deleteBook(bookInfo.isbn));
+    await book.deleteBook(bookInfo.isbn)
+    res.status(200).send({status: "livro deletado com sucesso!"});
   } catch (error) {
     throw error;
   }
