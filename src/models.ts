@@ -12,22 +12,21 @@ export let conn = createConnection(uri!, mongoOptions);
 conn.on("error", console.log.bind(console, "Erro ao conectar"));
 conn.once("open", console.log.bind(console, "Conexão estabelecida"));
 
-
 set("useCreateIndex", true);
 
 export interface IUser extends Document {
-  username: string,
-  name: string,
-  password: string
+  username: string;
+  name: string;
+  password: string;
 }
 
 export interface IBook extends Document {
-  author: string,
-  title: string,
-  isbn: string, 
-  quantity: number,
-  isDeleted: boolean,
-  synopsis: string,
+  author: string;
+  title: string;
+  isbn: string;
+  quantity: number;
+  isDeleted: boolean;
+  synopsis: string;
 }
 export interface IBookRent extends Document {
   book: IBook;
@@ -36,4 +35,7 @@ export interface IBookRent extends Document {
 }
 export const userModel = conn.model<IUser>("users", s.userSchema);
 export const bookModel = conn.model<IBook>("books", s.bookSchema);
-export const bookRentModel = conn.model<IBookRent>("book_rents", s.bookRentSchema);
+export const bookRentModel = conn.model<IBookRent>(
+  "book_rents",
+  s.bookRentSchema
+);

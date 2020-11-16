@@ -7,13 +7,13 @@ export const userSchema = new Schema(
     _id: ObjectId,
     name: {
       type: String,
-      unique: true
+      unique: true,
     },
     username: {
       type: String,
-      unique: true
+      unique: true,
     },
-    password: String
+    password: String,
   },
   { collection: "users", versionKey: false }
 );
@@ -24,15 +24,15 @@ export const bookSchema = new Schema(
     title: String,
     author: String,
     isbn: {
-      type: String, 
-      unique: true
+      type: String,
+      unique: true,
     },
     isDeleted: {
       type: Boolean,
-      default: false
+      default: false,
     },
     synopsis: String,
-    quantity: Number
+    quantity: Number,
   },
   { collection: "books", versionKey: false }
 );
@@ -42,16 +42,16 @@ export const bookRentSchema = new Schema(
     _id: ObjectId,
     user: {
       type: ObjectId,
-      ref: "users"
+      ref: "users",
     },
     book: {
       type: ObjectId,
-      ref: "books"
+      ref: "books",
     },
     isDeleted: {
       type: Boolean,
-      default: false
+      default: false,
     },
   },
   { collection: "book_rents", versionKey: false }
-)
+);
