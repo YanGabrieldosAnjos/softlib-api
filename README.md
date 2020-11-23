@@ -9,6 +9,7 @@
 Instalar node e npm
 # Como rodar
 criar um arquivo .env e preencher como mostrado em env.example
+
 docker-compose up --build
 
 # Testes
